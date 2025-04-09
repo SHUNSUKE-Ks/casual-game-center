@@ -1,25 +1,27 @@
-css
-コピーする編集する
 /* ========== 全体のデフォルトスタイル ========== */
-body {
+html, body, #root {
+  height: 100%; /* ゲーム画面を全画面に拡張するために必要 */
   margin: 0;
   padding: 0;
-  background-color: #c5baba; /* 背景色を明るいグレーに */
-  font-family: sans-serif;   /* フォントを読みやすいサンセリフに */
-  color: #333;               /* デフォルト文字色を少し暗めに */
+}
+
+body {
+  background-color: #c5baba;   /* 背景色を明るいグレーに */
+  font-family: sans-serif;     /* フォントを読みやすいサンセリフに */
+  color: #333;                 /* デフォルト文字色を少し暗めに */
 }
 
 /* ========== ヘッダーのデザイン ========== */
 .header {
   width: 100%;                  /* 横幅いっぱいに広げる */
-  height: 64px;                 /* 高さ指定（アイコンサイズに合わせて） */
+  height: 64px;                 /* 高さ指定（ロゴサイズに合わせて） */
   display: flex;                /* フレックスレイアウトで横並び */
   align-items: center;          /* 縦中央揃え */
   padding: 0 20px;              /* 左右の余白 */
   background-color: #ffffff;    /* 背景は白 */
   border-bottom: 1px solid #ccc;/* 下に薄い境界線 */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 軽い影 */
-  position: fixed;              /* 画面上に固定 */
+  position: fixed;              /* 画面上に固定表示 */
   top: 0;
   left: 0;
   z-index: 1000;                /* 他の要素の上に表示 */
@@ -28,34 +30,33 @@ body {
 /* ロゴ画像のスタイル */
 .logo {
   width: 96px;   /* 横幅固定 */
-  height: 48px;  /* 高さは比率で自動 */
+  height: 48px;  /* 高さ指定（アスペクト比維持） */
 }
 
 /* ========== ギャラリー（カードを並べる） ========== */
 .gallery {
   display: flex;
   justify-content: center;   /* 横方向中央寄せ */
-  align-items: flex-start;   /* 上詰め */
+  align-items: flex-start;   /* 上詰め配置 */
   flex-wrap: wrap;           /* 折り返しあり */
   gap: 20px;                 /* カードの間隔 */
-  padding: 80px 20px 40px;   /* 上にヘッダー分の余白を多めに確保 */
+  padding: 80px 20px 40px;   /* 上にヘッダー分の余白を確保 */
 }
 
 /* ========== ゲームカード ========== */
 .game-card {
   width: 260px;                         /* カードの幅 */
-  border: 3px solid #ccc;              /* 枠線 */
+  border: 3px solid #ccc;              /* 枠線を少し太く */
   border-radius: 8px;                  /* 角丸 */
   padding: 16px;                       /* 内側の余白 */
   background-color: #fff;              /* 背景は白 */
   text-align: center;                  /* 中央揃え */
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* 軽い影 */
-  transition: transform 0.2s;          /* ホバー時にふわっと */
+  transition: transform 0.2s;          /* ホバー時にふわっと拡大 */
 }
 
-/* マウスを乗せたときに拡大 */
 .game-card:hover {
-  transform: scale(1.02);
+  transform: scale(1.02); /* ホバー時に拡大 */
 }
 
 /* タイトルのスタイル */
@@ -68,7 +69,18 @@ body {
 /* サムネイル画像のスタイル */
 .thumb {
   width: 100%;          /* カードの幅に合わせて100% */
-  height: auto;         /* 高さは自動 */
+  height: auto;         /* 高さは自動調整 */
   border-radius: 4px;   /* 角丸 */
 }
 
+/* ========== ゲーム画面のフルスクリーン用スタイル ========== */
+
+
+main.fullscreen {
+  height: calc(100vh - 100px); /* ヘッダー（64px）を除いた全画面 */
+  width: 100%;
+  display: flex;
+  justify-content: center;   /* 中央寄せ（X方向） */
+  align-items: center;       /* 中央寄せ（Y方向） */
+  background-color: #000;    /* ゲーム背景は黒（好みで変更可） */
+}
